@@ -1,7 +1,7 @@
 package com.ashish.msscbeerservice.web.v1.model;
 
-import com.ashish.msscbeerservice.entity.BeerStyle;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(name = "Beer model")
 public class BeerDto {
     private UUID id;
     private String beerName;
