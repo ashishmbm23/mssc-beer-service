@@ -23,6 +23,7 @@ public class BeerDto {
     private BigDecimal price;
     private OffsetDateTime createdDate;
     private OffsetDateTime lastUpdatedDate;
+    private Long version;
     @JsonProperty("beer_url")
     private String beerUrl;
 }

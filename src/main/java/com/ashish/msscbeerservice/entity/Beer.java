@@ -1,13 +1,12 @@
 package com.ashish.msscbeerservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -25,9 +24,15 @@ public class Beer {
     private UUID id;
     private String beerName;
     private BeerStyle beerStyle;
+    @Version
+    private Long version;
+    @Column(unique = true)
     private String upc;
     private Long quantityOnHand;
     private BigDecimal price;
+    @CreationTimestamp
+    @Column(updatable = false)
     private OffsetDateTime createdDate;
+    @UpdateTimestamp
     private OffsetDateTime lastUpdatedDate;
 }

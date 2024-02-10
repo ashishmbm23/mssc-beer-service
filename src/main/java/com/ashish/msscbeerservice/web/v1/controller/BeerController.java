@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -96,13 +97,16 @@ public class BeerController {
                     content =
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = BeerDto.class)
+                            schema = @Schema(implementation = ResponseEntity.class)
                     )
             )
     }
     )
-    public ResponseEntity<BeerDto> saveNewBeer(@RequestBody BeerDto beerDto){
-        return new ResponseEntity<>(beerService.createBeer(beerDto), HttpStatus.CREATED);
+    public ResponseEntity saveNewBeer(@RequestBody BeerDto beerDto){
+        BeerDto savedBeerDto = beerService.createBeer(beerDto);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("location", "/api/v1/beer/" + savedBeerDto.getId());
+        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
