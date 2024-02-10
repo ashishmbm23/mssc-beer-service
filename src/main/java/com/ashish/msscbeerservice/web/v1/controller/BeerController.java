@@ -1,7 +1,6 @@
 package com.ashish.msscbeerservice.web.v1.controller;
 
 import com.ashish.msscbeerservice.service.BeerService;
-import com.ashish.msscbeerservice.util.Util;
 import com.ashish.msscbeerservice.web.v1.model.BeerDto;
 import com.ashish.msscbeerservice.web.v1.model.BeerListDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,8 +65,8 @@ public class BeerController {
                     description = "Beer upc not found"
             )}
     )
-    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") UUID upc){
-        return new ResponseEntity<>( beerService.getBeerById(upc), HttpStatus.OK);
+    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc){
+        return new ResponseEntity<>( beerService.getBeerByUpc(upc), HttpStatus.OK);
     }
 
     @GetMapping
