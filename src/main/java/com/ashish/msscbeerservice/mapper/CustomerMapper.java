@@ -5,7 +5,7 @@ import com.ashish.msscbeerservice.web.v1.model.CustomerDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper//(componentModel = "spring")
 public interface CustomerMapper {
     CustomerMapper CUSTOMER_MAPPER = Mappers.getMapper(CustomerMapper.class);
 
