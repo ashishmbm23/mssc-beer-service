@@ -1,5 +1,6 @@
 package com.ashish.msscbeerservice.service;
 
+import com.ashish.msscbeerservice.entity.Customer;
 import com.ashish.msscbeerservice.mapper.CustomerMapper;
 import com.ashish.msscbeerservice.repository.CustomerRepository;
 import com.ashish.msscbeerservice.util.Util;
@@ -30,9 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto saveCustomer(CustomerDto customerDto) {
         log.info("save customer");
-        return CustomerDto.builder().
-                id(UUID.randomUUID()).
-                build();
+        Customer customer = customerMapper.convertCustomerDtoToCustomer(customerDto);
+        Customer savedCustomer = customerRepository.save(customer);
+        CustomerDto savedCustomerDto = customerMapper.convertCustomerToCustomerDto(savedCustomer);
+        util.setUrl(savedCustomerDto);
+        return savedCustomerDto;
     }
 
     @Override

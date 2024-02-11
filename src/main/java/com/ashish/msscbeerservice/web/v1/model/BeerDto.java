@@ -2,7 +2,10 @@ package com.ashish.msscbeerservice.web.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +31,11 @@ public class BeerDto {
     private Long quantityOnHand;
     @DecimalMin("0")
     private BigDecimal price;
-    @PastOrPresent
+    @Null
     private OffsetDateTime createdDate;
-    @PastOrPresent
+    @Null
     private OffsetDateTime lastUpdatedDate;
+    @Null
     private Long version;
     @JsonProperty("beer_url")
     private String beerUrl;

@@ -24,7 +24,7 @@ public class Util {
             ((BeerDto) t).setBeerUrl(getBeerBaseUrl());
         }
         else if( t instanceof CustomerDto){
-            ((BeerDto) t).setBeerUrl(getBeerBaseUrl());
+            ((BeerDto) t).setBeerUrl(getCustomerBaseUrl());
         }
     }
 

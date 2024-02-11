@@ -9,6 +9,7 @@ import com.ashish.msscbeerservice.web.v1.model.BeerDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -55,6 +56,8 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto createBeer(BeerDto beerDto) {
         Beer beer = beerMapper.convertBeerDtoToBeer(beerDto);
+        beer.setLastUpdatedDate(OffsetDateTime.now());
+        beer.setCreatedDate(OffsetDateTime.now());
         Beer savedBeer = beerRepository.save(beer);
         BeerDto savedBeerDto = beerMapper.convertBeerToBeerDto(savedBeer);
         util.setUrl(savedBeerDto);
@@ -67,6 +70,7 @@ public class BeerServiceImpl implements BeerService {
         if(optionalBeer.isPresent()){
             Beer beer = beerMapper.convertBeerDtoToBeer(beerDto);
             beer.setId(id);
+            beer.setLastUpdatedDate(OffsetDateTime.now());
             Beer savedBeer = beerRepository.save(beer);
             BeerDto savedBeerDto = beerMapper.convertBeerToBeerDto(savedBeer);
             util.setUrl(savedBeerDto);
