@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -102,7 +103,7 @@ public class BeerController {
             )
     }
     )
-    public ResponseEntity saveNewBeer(@RequestBody BeerDto beerDto){
+    public ResponseEntity saveNewBeer(@Valid @RequestBody BeerDto beerDto){
         BeerDto savedBeerDto = beerService.createBeer(beerDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("location", "/api/v1/beer/" + savedBeerDto.getId());
@@ -127,7 +128,7 @@ public class BeerController {
             )
     }
     )
-    public ResponseEntity<Void> updateBeer(@PathVariable("id") UUID id, @RequestBody BeerDto beerDto){
+    public ResponseEntity<Void> updateBeer(@Valid @PathVariable("id") UUID id, @RequestBody BeerDto beerDto){
         beerService.updateBeer(id, beerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
