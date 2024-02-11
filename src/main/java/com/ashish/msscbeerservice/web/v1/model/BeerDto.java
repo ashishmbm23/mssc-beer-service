@@ -1,5 +1,6 @@
 package com.ashish.msscbeerservice.web.v1.model;
 
+import com.ashish.msscbeerservice.entity.BeerStyle;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.DecimalMin;
@@ -24,7 +25,7 @@ public class BeerDto {
     @NotEmpty
     private String beerName;
     @NotEmpty
-    private String beerStyle;
+    private BeerStyle beerStyle;
     @Positive
     private String upc;
     @Positive

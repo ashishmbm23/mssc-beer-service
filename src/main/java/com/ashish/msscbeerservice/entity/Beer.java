@@ -23,7 +23,7 @@ public class Beer {
     @GeneratedValue(strategy = GenerationType.AUTO )
     private UUID id;
     private String beerName;
-    private BeerStyle beerStyle;
+    private String beerStyle;
     @Version
     private Long version;
     @Column(unique = true)

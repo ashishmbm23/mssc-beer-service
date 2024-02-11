@@ -1,7 +1,6 @@
 package com.ashish.msscbeerservice.bootstrap;
 
 import com.ashish.msscbeerservice.entity.Beer;
-import com.ashish.msscbeerservice.entity.BeerStyle;
 import com.ashish.msscbeerservice.repository.BeerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,14 +31,14 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
         log.info("saving beer");
         Beer lager = Beer.builder().beerName("My Lager")
-                .beerStyle(BeerStyle.LAGER)
+                .beerStyle("LAGER")
                 .upc("012345678901")
                 .quantityOnHand(100L)
                 .price(new BigDecimal(500))
                 .build();
 
         Beer ale = Beer.builder().beerName("My Ale")
-                .beerStyle(BeerStyle.ALE)
+                .beerStyle("ALE")
                 .upc("012345678911")
                 .quantityOnHand(200L)
                 .price(new BigDecimal(1000))
