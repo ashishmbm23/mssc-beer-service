@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -155,4 +158,15 @@ public class BeerController {
         beerService.deleteBeer(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public List<String> handleViolationException(ConstraintViolationException constraintViolationException){
+        List<String> errors = new ArrayList<>();
+        constraintViolationException.getConstraintViolations().forEach( constraintViolation -> {
+            errors.add(constraintViolation.getPropertyPath() + ":" + constraintViolation.getMessage());
+        });
+        return errors;
+    }
+
+
 }

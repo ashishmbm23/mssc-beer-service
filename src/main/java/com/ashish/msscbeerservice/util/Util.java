@@ -1,6 +1,7 @@
 package com.ashish.msscbeerservice.util;
 
 import com.ashish.msscbeerservice.web.v1.model.BeerDto;
+import com.ashish.msscbeerservice.web.v1.model.CustomerDto;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,10 +23,17 @@ public class Util {
         if( t instanceof BeerDto ){
             ((BeerDto) t).setBeerUrl(getBeerBaseUrl());
         }
+        else if( t instanceof CustomerDto){
+            ((BeerDto) t).setBeerUrl(getBeerBaseUrl());
+        }
     }
 
     public String getBeerBaseUrl() {
         return getApiVersion() + Constant.beerUrl;
+    }
+
+    public String getCustomerBaseUrl() {
+        return getApiVersion() + Constant.customerUrl;
     }
 
     private String getApiVersion() {
