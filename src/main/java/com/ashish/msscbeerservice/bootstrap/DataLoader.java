@@ -8,10 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Slf4j
-@Service
+//@Service
 public class DataLoader implements CommandLineRunner {
     private final BeerRepository beerRepository;
     @Override
@@ -30,17 +31,22 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadData() {
         log.info("saving beer");
+        UUID lagerUUID = UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb");
+        UUID aleUUID = UUID.fromString("a712d914-61ea-4623-8bd0-32c0f6545bfd");
+        UUID porterUUID = UUID.fromString("026cc3c8-3a0c-4083-a05b-e908048c1b08");
         Beer lager = Beer.builder().beerName("My Lager")
                 .beerStyle("LAGER")
+                .id(lagerUUID)
                 .upc("012345678901")
-                .quantityOnHand(100L)
+                .minOnHand(100L)
                 .price(new BigDecimal(500))
                 .build();
 
         Beer ale = Beer.builder().beerName("My Ale")
+                .id(aleUUID)
                 .beerStyle("ALE")
                 .upc("012345678911")
-                .quantityOnHand(200L)
+                .minOnHand(200L)
                 .price(new BigDecimal(1000))
                 .build();
 

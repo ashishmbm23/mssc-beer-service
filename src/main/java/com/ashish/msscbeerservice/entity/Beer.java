@@ -28,11 +28,12 @@ public class Beer {
     private Long version;
     @Column(unique = true)
     private String upc;
-    private Long quantityOnHand;
+    private Long minOnHand;
+    private Long quantityToBrew;
     private BigDecimal price;
     @CreationTimestamp
     @Column(updatable = false)
     private OffsetDateTime createdDate;
     @UpdateTimestamp
-    private OffsetDateTime lastUpdatedDate;
+    private OffsetDateTime lastModifiedDate;
 }

@@ -3,6 +3,8 @@ package com.ashish.msscbeerservice.web.v1.controller;
 import com.ashish.msscbeerservice.service.BeerService;
 import com.ashish.msscbeerservice.web.v1.model.BeerDto;
 import com.ashish.msscbeerservice.web.v1.model.BeerListDto;
+import com.ashish.msscbeerservice.web.v1.model.BeerPagedList;
+import com.ashish.msscbeerservice.web.v1.model.BeerStyleEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +34,8 @@ import java.util.UUID;
 public class BeerController {
     private final BeerService beerService;
     public final static String BASE_URL = "/api/v1/beer";
+    private static final Integer DEFAULT_PAGE_NUMBER = 0;
+    private static final Integer DEFAULT_PAGE_SIZE = 25;
 
     @GetMapping("/{id}")
     @Operation(description = "Get beer by id")
@@ -49,8 +54,12 @@ public class BeerController {
                     description = "Beer id not found"
             )}
     )
-    public ResponseEntity<BeerDto> getBeerById(@PathVariable("id") UUID id){
-        return new ResponseEntity<>( beerService.getBeerById(id), HttpStatus.OK);
+    public ResponseEntity<BeerDto> getBeerById(@PathVariable("id") UUID id,
+                                               @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+        return new ResponseEntity<>( beerService.getBeerById(id, showInventoryOnHand), HttpStatus.OK);
     }
 
     @GetMapping("/upc/{upc}")
@@ -88,8 +97,27 @@ public class BeerController {
             )
         }
     )
-    public ResponseEntity<BeerListDto> getAllBeers(){
-        return new ResponseEntity<>(new BeerListDto(beerService.getBeers()), HttpStatus.OK);
+    public ResponseEntity<BeerPagedList> getAllBeers(
+            @RequestParam(value = "pageNumber", required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize,
+            @RequestParam(value = "beerName", required = false) String beerName,
+            @RequestParam(value = "beerStyle", required = false) BeerStyleEnum beerStyle,
+            @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand
+    ){
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+
+        if (pageNumber == null || pageNumber < 0){
+            pageNumber = DEFAULT_PAGE_NUMBER;
+        }
+
+        if (pageSize == null || pageSize < 1) {
+            pageSize = DEFAULT_PAGE_SIZE;
+        }
+        BeerPagedList beerList = beerService.listBeers
+                (beerName, beerStyle, PageRequest.of(pageNumber, pageSize), showInventoryOnHand);
+        return new ResponseEntity<>(beerList, HttpStatus.OK);
     }
 
     @PostMapping
