@@ -64,13 +64,22 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerDto getBeerByUpc(String upc) {
+    @Cacheable(cacheNames = "beerUpcCache", key="#upc", condition = "#showInventoryOnHand==false")
+    public BeerDto getBeerByUpc(String upc, Boolean showInventoryOnHand) {
         Optional<Beer> optionalBeer = beerRepository.getBeerByUpc(upc);
-        return optionalBeer.map(beer -> {
-            BeerDto beerDto =  beerMapper.convertBeerToBeerDto(beer);
-            util.setUrl(beerDto);
-            return beerDto;
-        }).orElseThrow(() -> new BeerNotFoundException("Beer not found with id: " + upc));
+        if( showInventoryOnHand ){
+            return optionalBeer.map(beer -> {
+                BeerDto beerDto =  beerMapper.beerToBeerDtoWithInventory(beer);
+                util.setUrl(beerDto);
+                return beerDto;
+            }).orElseThrow(() -> new BeerNotFoundException("Beer not found with id: " + upc));
+        }else{
+            return optionalBeer.map(beer -> {
+                BeerDto beerDto =  beerMapper.convertBeerToBeerDto(beer);
+                util.setUrl(beerDto);
+                return beerDto;
+            }).orElseThrow(() -> new BeerNotFoundException("Beer not found with id: " + upc));
+        }
     }
 
     @Override
