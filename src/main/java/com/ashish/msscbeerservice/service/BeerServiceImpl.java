@@ -9,6 +9,8 @@ import com.ashish.msscbeerservice.web.v1.model.BeerDto;
 import com.ashish.msscbeerservice.web.v1.model.BeerPagedList;
 import com.ashish.msscbeerservice.web.v1.model.BeerStyleEnum;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,11 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class BeerServiceImpl implements BeerService {
 
     private final BeerRepository beerRepository;
@@ -40,7 +42,9 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
+    @Cacheable(cacheNames = "beerCache", key = "#id", condition = "#showInventoryOnHand==false")
     public BeerDto getBeerById(UUID id, Boolean showInventoryOnHand) {
+        log.info("Inside getBeer By Id");
         Optional<Beer> optionalBeer = beerRepository.findById(id);
         if( showInventoryOnHand ){
             return optionalBeer.map(beer -> {
@@ -56,7 +60,7 @@ public class BeerServiceImpl implements BeerService {
                 return beerDto;
             }).orElseThrow(() -> new BeerNotFoundException("Beer not found with id: " + id));
         }
-        
+
     }
 
     @Override
@@ -102,11 +106,12 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
+    @Cacheable(cacheNames = "beerListCache", condition = "#showInventoryOnHand==false")
     public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest,
                                    Boolean showInventoryOnHand) {
         BeerPagedList beerPagedList;
         Page<Beer> beerPage;
-
+        log.info("Inside getBeers");
         if (!StringUtils.isEmpty(beerName) && !StringUtils.isEmpty(beerStyle)) {
             //search both
             beerPage = beerRepository.findAllByBeerNameAndBeerStyle(beerName, beerStyle, pageRequest);
