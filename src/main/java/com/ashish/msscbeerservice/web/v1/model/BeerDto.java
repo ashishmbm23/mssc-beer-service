@@ -29,13 +29,15 @@ public class BeerDto {
     @Positive
     private String upc;
     @Positive
-    private Long quantityOnHand;
+    private Long minOnHand;
+    @Positive
+    private Long quantityToBrew;
     @DecimalMin("0")
     private BigDecimal price;
     @Null
     private OffsetDateTime createdDate;
     @Null
-    private OffsetDateTime lastUpdatedDate;
+    private OffsetDateTime lastModifiedDate;
     @Null
     private Long version;
     @JsonProperty("beer_url")
