@@ -1,6 +1,7 @@
 package com.ashish.msscbeerservice.web.v1.model;
 
 import com.ashish.msscbeerservice.entity.BeerStyle;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.DecimalMin;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -19,7 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(name = "Beer model")
-public class BeerDto {
+public class BeerDto implements Serializable {
     @Null
     private UUID id;
     @NotEmpty
@@ -35,8 +37,10 @@ public class BeerDto {
     @DecimalMin("0")
     private BigDecimal price;
     @Null
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
     private OffsetDateTime createdDate;
     @Null
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
     private OffsetDateTime lastModifiedDate;
     @Null
     private Long version;

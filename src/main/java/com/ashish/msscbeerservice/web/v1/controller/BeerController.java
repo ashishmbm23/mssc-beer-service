@@ -79,8 +79,12 @@ public class BeerController {
                     description = "Beer upc not found"
             )}
     )
-    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc){
-        return new ResponseEntity<>( beerService.getBeerByUpc(upc), HttpStatus.OK);
+    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc,
+            @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
+        if( showInventoryOnHand == null){
+            showInventoryOnHand = false;
+        }
+        return new ResponseEntity<>( beerService.getBeerByUpc(upc, showInventoryOnHand), HttpStatus.OK);
     }
 
     @GetMapping
