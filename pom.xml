@@ -13,30 +13,26 @@
 	<name>com.ashish</name>
 	<description>A microservice for all beer things</description>
 	<properties>
-		<java.version>17</java.version>
-		<mapstruct.version>1.5.5.Final</mapstruct.version>
-		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-		<h2.version>2.2.224</h2.version>
-		<mysql-connector-j.version>8.3.0</mysql-connector-j.version>
-		<springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
-		<lombok.version>1.18.28</lombok.version>
-		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+		<cache-api.version>1.1.1</cache-api.version>
+		<ehcache.version>3.10.8</ehcache.version>
+		<spring-boot-starter-cache.version>3.1.5</spring-boot-starter-cache.version>
 	</properties>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
-			<version>3.1.5</version></dependency>
+			<version>${spring-boot-starter-cache.version}</version></dependency>
 		<dependency>
 			<groupId>javax.cache</groupId>
 			<artifactId>cache-api</artifactId>
-			<version>1.1.1</version>
+			<version>${cache-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
-			<version>3.10.8</version>
+			<version>${ehcache.version}</version>
 			<classifier>jakarta</classifier>
 		</dependency>
 	</dependencies>
