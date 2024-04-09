@@ -10,7 +10,7 @@
 	<groupId>com.ashish</groupId>
 	<artifactId>mssc-beer-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>com.ashish</name>
+	<name>beer-service</name>
 	<description>A microservice for all beer things</description>
 	<properties>
 		<cache-api.version>1.1.1</cache-api.version>
