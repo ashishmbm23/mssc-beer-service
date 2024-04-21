@@ -2,6 +2,7 @@ package com.ashish.msscbeerservice.service.brewing;
 
 import com.ashish.msscbeerservice.config.JMSConfig;
 import com.ashish.msscbeerservice.entity.Beer;
+import com.ashish.msscbeerservice.event.BrewBeerEvent;
 import com.ashish.msscbeerservice.repository.BeerRepository;
 import com.ashish.msscbeerservice.service.inventory.BeerInventoryService;
 import com.ashish.msscbeerservice.web.v1.mapper.BeerMapper;
@@ -32,7 +33,7 @@ public class BrewingService {
                     log.debug("Beer QOH:" + invQOH);
                     if( beer.getMinOnHand() >= invQOH ){
                         jmsTemplate.convertAndSend(JMSConfig.BREWING_REQUEST_QUEUE,
-                                beerMapper.convertBeerToBeerDto(beer) );
+                                new BrewBeerEvent( beerMapper.convertBeerToBeerDto(beer) ));
                     }
                 }));
     }
