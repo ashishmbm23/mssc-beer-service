@@ -8,7 +8,7 @@ import org.springframework.jms.support.converter.MessageType;
 
 @Configuration
 public class JMSConfig {
-    public final String SFG_BEER_ORDER_QUEUE="sfg-beer-queue";
+    public final static String BREWING_REQUEST_QUEUE="brewing-request";
 
     @Bean
     public MessageConverter messageConverter(){
