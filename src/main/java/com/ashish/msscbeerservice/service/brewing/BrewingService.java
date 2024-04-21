@@ -6,6 +6,7 @@ import com.ashish.msscbeerservice.event.BrewBeerEvent;
 import com.ashish.msscbeerservice.repository.BeerRepository;
 import com.ashish.msscbeerservice.service.inventory.BeerInventoryService;
 import com.ashish.msscbeerservice.web.v1.mapper.BeerMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.core.JmsTemplate;
@@ -23,6 +24,7 @@ public class BrewingService {
     private final JmsTemplate jmsTemplate;
     private final BeerMapper beerMapper;
 
+    @Transactional
     @Scheduled(fixedRate = 5000)
     public void checkForLowInventory(){
         List<Beer> beerList = beerRepository.findAll();
