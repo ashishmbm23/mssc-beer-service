@@ -1,13 +1,13 @@
 package com.ashish.msscbeerservice.service;
 
+import com.ashish.common.BeerDto;
+import com.ashish.common.BeerPagedList;
+import com.ashish.common.BeerStyleEnum;
 import com.ashish.msscbeerservice.entity.Beer;
 import com.ashish.msscbeerservice.exception.BeerNotFoundException;
 import com.ashish.msscbeerservice.repository.BeerRepository;
 import com.ashish.msscbeerservice.util.Util;
 import com.ashish.msscbeerservice.web.v1.mapper.BeerMapper;
-import com.ashish.msscbeerservice.web.v1.model.BeerDto;
-import com.ashish.msscbeerservice.web.v1.model.BeerPagedList;
-import com.ashish.msscbeerservice.web.v1.model.BeerStyleEnum;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;

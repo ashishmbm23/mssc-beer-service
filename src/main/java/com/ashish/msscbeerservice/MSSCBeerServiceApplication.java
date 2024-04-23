@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @OpenAPIDefinition(
@@ -18,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				)
 		)
 )
+@ComponentScan(basePackages = "com.ashish")
 public class MSSCBeerServiceApplication {
 
 	public static void main(String[] args) {

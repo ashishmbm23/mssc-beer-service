@@ -1,4 +1,4 @@
-package com.ashish.msscbeerservice.web.v1.model;
+package com.ashish.common;
 
 import com.ashish.msscbeerservice.entity.BeerStyle;
 import com.fasterxml.jackson.annotation.JsonFormat;

@@ -1,6 +1,6 @@
-package com.ashish.msscbeerservice.event;
+package com.ashish.common.events;
 
-import com.ashish.msscbeerservice.web.v1.model.BeerDto;
+import com.ashish.common.BeerDto;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

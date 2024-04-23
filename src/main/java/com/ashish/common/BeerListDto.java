@@ -1,4 +1,4 @@
-package com.ashish.msscbeerservice.web.v1.model;
+package com.ashish.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

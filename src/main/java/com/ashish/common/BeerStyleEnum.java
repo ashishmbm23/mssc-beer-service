@@ -1,4 +1,4 @@
-package com.ashish.msscbeerservice.web.v1.model;
+package com.ashish.common;
 
 public enum BeerStyleEnum {
     LAGER, PILSNER, STOUT, GOSE, PORTER, ALE, WHEAT, IPA, PALE_ALE, SAISON

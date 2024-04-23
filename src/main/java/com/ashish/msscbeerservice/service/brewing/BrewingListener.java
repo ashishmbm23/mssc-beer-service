@@ -1,11 +1,11 @@
 package com.ashish.msscbeerservice.service.brewing;
 
+import com.ashish.common.BeerDto;
+import com.ashish.common.events.BrewBeerEvent;
+import com.ashish.common.events.NewInventoryEvent;
 import com.ashish.msscbeerservice.config.JMSConfig;
 import com.ashish.msscbeerservice.entity.Beer;
-import com.ashish.msscbeerservice.event.BrewBeerEvent;
-import com.ashish.msscbeerservice.event.NewInventoryEvent;
 import com.ashish.msscbeerservice.repository.BeerRepository;
-import com.ashish.msscbeerservice.web.v1.model.BeerDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
