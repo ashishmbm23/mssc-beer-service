@@ -38,6 +38,7 @@ public class DataLoader implements CommandLineRunner {
                 .beerStyle("IPA")
                 .id(lagerUUID)
                 .upc("0631234200036")
+                .minOnHand(200L)
                 .quantityToBrew(100l)
                 .price(new BigDecimal(12.95))
                 .version(1L)
@@ -48,6 +49,7 @@ public class DataLoader implements CommandLineRunner {
                 .beerStyle("PALE_ALE")
                 .upc("0631234300019")
                 .minOnHand(200L)
+                .quantityToBrew(100l)
                 .price(new BigDecimal(10.95))
                 .version(1L)
                 .build();
@@ -56,7 +58,8 @@ public class DataLoader implements CommandLineRunner {
                 .id(porterUUID)
                 .beerStyle("PORTER")
                 .upc("0083783375213")
-                .minOnHand(300L)
+                .minOnHand(200L)
+                .quantityToBrew(100l)
                 .price(new BigDecimal(15.95))
                 .version(1L)
                 .build();
