@@ -1,6 +1,6 @@
 package com.ashish.msscbeerservice.util;
 
-import com.ashish.common.BeerDto;
+import com.ashish.common.model.BeerDto;
 import com.ashish.msscbeerservice.web.v1.model.CustomerDto;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,9 @@
 package com.ashish.msscbeerservice.web.v1.controller;
 
-import com.ashish.common.BeerDto;
-import com.ashish.common.BeerListDto;
-import com.ashish.common.BeerPagedList;
-import com.ashish.common.BeerStyleEnum;
+import com.ashish.common.model.BeerDto;
+import com.ashish.common.model.BeerListDto;
+import com.ashish.common.model.BeerPagedList;
+import com.ashish.common.model.BeerStyleEnum;
 import com.ashish.msscbeerservice.service.BeerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

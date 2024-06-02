@@ -1,6 +1,6 @@
-package com.ashish.common.events;
+package com.ashish.common.model.events;
 
-import com.ashish.common.BeerDto;
+import com.ashish.common.model.BeerDto;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

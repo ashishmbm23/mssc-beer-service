@@ -1,8 +1,8 @@
 package com.ashish.msscbeerservice.service;
 
-import com.ashish.common.BeerDto;
-import com.ashish.common.BeerPagedList;
-import com.ashish.common.BeerStyleEnum;
+import com.ashish.common.model.BeerDto;
+import com.ashish.common.model.BeerPagedList;
+import com.ashish.common.model.BeerStyleEnum;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.ashish.msscbeerservice.repository;
 
-import com.ashish.common.BeerStyleEnum;
+import com.ashish.common.model.BeerStyleEnum;
 import com.ashish.msscbeerservice.entity.Beer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

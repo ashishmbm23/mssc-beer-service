@@ -1,6 +1,6 @@
 package com.ashish.msscbeerservice.web.v1.mapper;
 
-import com.ashish.common.BeerDto;
+import com.ashish.common.model.BeerDto;
 import com.ashish.msscbeerservice.entity.Beer;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;

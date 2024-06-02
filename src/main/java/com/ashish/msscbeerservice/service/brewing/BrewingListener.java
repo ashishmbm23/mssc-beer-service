@@ -1,8 +1,8 @@
 package com.ashish.msscbeerservice.service.brewing;
 
-import com.ashish.common.BeerDto;
-import com.ashish.common.events.BrewBeerEvent;
-import com.ashish.common.events.NewInventoryEvent;
+import com.ashish.common.model.BeerDto;
+import com.ashish.common.model.events.BrewBeerEvent;
+import com.ashish.common.model.events.NewInventoryEvent;
 import com.ashish.msscbeerservice.config.JMSConfig;
 import com.ashish.msscbeerservice.entity.Beer;
 import com.ashish.msscbeerservice.repository.BeerRepository;

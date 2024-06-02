@@ -1,4 +1,4 @@
-package com.ashish.common;
+package com.ashish.common.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.domain.PageImpl;
